@@ -8,10 +8,10 @@
           </div>
           <div class="top_left_info">
             <div class="info_top">
-              马可波罗
+             {{couponItem.brandName}}
             </div>
             <div class="info_bottom">
-              <span>￥<span>150</span></span> 满 <span>200</span>元可使用
+              <span>￥<span>{{couponItem.price}}</span></span> 满 <span>{{couponItem.totalPrice}}</span>元可使用
             </div>
           </div>
         </div>
@@ -22,13 +22,17 @@
         </div>
       </div>
       <div class="coupon_bottom">
-        <div class="bottom_text">*满5000减200</div>
+        <div class="bottom_text">*{{couponItem.condition}}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props:["couponItem"],
+  created(){
+  }
+};
 </script>
 <style scoped lang="less">
 @import "~styles/index.less";

@@ -11,6 +11,5 @@ export default new Vuex.Store({
   modules: {
     home,
     my
-  },
-  plugins: debug ? [createLogger()] : []   // 是否开启vuex的debug模式
+  }
 })

@@ -1,10 +1,29 @@
 <template>
   <!-- 海报html元素 -->
-  <div id="posterHtml" :style="{backgroundImage: 'url('+posterHtmlBg+')'}" v-show="false">
-    <!-- 二维码 -->
-    <div class="qrcode">
-      <div id="qrcodeImg"></div>
+  <div>
+    <div id="posterHtml" :style="{backgroundImage: 'url('+posterHtmlBg+')'}" ref="imageWrapper">
+      <!-- 二维码 -->
+      <div class="foot">
+        <div class="foot_left">
+          <div class="left_img">
+            <img src alt />
+          </div>
+          <div class="left_text">
+            <div class="left_text_name">一二三四</div>
+            <div class="left_text_tip">邀请您参加活动</div>
+          </div>
+        </div>
+        <div class="qrcode">
+          <div id="qrcodeImg"></div>
+        </div>
+      </div>
+
+      <!-- <img :src="posterImg" alt /> -->
     </div>
+    <mt-popup v-model="popupVisible" popup-transition="popup-fade" >
+      <img :src="posterImg" alt="">
+    </mt-popup>
+    <el-button @click="createPoster">dianji</el-button>
   </div>
 </template>
 
@@ -20,7 +39,8 @@ export default {
       posterContent:
         "https://open.weixin.qq.com/connect/oauth2/authorize?appid=wx2632f57487059856&redirect_uri=http%3a%2f%2fmall.qszhuang.com%2fstatic%2fwebpage%2fdist%2findex.html%23%2fhome&response_type=code&scope=snsapi_userinfo&state=STATE#wechat_redirect", // 文案内容
       posterHtmlBg: require("../../assets/imgs/1.jpg"), // 背景图
-      posterImg: "" // 最终生成的海报图片
+      posterImg: "", // 最终生成的海报图片
+      popupVisible:false
     };
   },
   components: { QRCode },
@@ -47,21 +67,35 @@ export default {
       // 生成海报
       const vm = this;
       const domObj = document.getElementById("posterHtml");
-      html2canvas(domObj, {
-        useCORS: true,
-        allowTaint: false,
-        logging: false,
-        letterRendering: true,
-        onclone(doc) {
-          let e = doc.querySelector("#posterHtml");
-          e.style.display = "block";
-        }
-      }).then(function(canvas) {
+      html2canvas(this.$refs.imageWrapper).then(function(canvas) {
         // 在微信里,可长按保存或转发
-        console.log(canvas.toDataURL("image/png"));
         vm.posterImg = canvas.toDataURL("image/png");
+        vm.popupVisible=true;
       });
     }
   }
 };
 </script>
+
+<style lang="less" scoped>
+  .foot{
+    display: flex;
+    align-items: center;padding:10px;
+    justify-content: space-between;
+    .foot_left{
+      display: flex;
+      flex:2;
+      justify-content: space-around;
+      .left_img{
+        border-radius:50%;
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .left_text{
+
+      }
+    }
+  }
+</style>

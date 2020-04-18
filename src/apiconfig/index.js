@@ -71,7 +71,7 @@ axios.interceptors.response.use(data => {//{data:{status:200,msg"",obj:{}},statu
     return
   }
   if (data.data.msg) {
-    Message.success({message: data.data.msg})
+    // Message.success({message: data.data.msg})
   }
   return data.data
 }, err => {
@@ -90,7 +90,8 @@ axios.interceptors.response.use(data => {//{data:{status:200,msg"",obj:{}},statu
   }
   // return Promise.resolve(err);
 })
-let base = ''
+// let base = 'http://192.168.0.173:8001'
+let base=""
 export const postKeyValueRequest = (url, params) => {
   return axios({
     method: 'post',
@@ -113,9 +114,9 @@ export const postRequest = (url, params) => {
     method: 'post',
     url: `${base}${url}`,
     data: params,
-    headers: {
-      'Content-Type': 'application/json'
-    }
+    header: {
+      'content-type': 'application/x-www-form-urlencoded'
+    },
   })
 }
 export const uploadFileRequest = (url, params) => {
@@ -144,9 +145,11 @@ export const deleteRequest = (url) => {
     url: `${base}${url}`
   })
 }
-export const getRequest = (url) => {
+export const getRequest = (url,params) => {
   return axios({
     method: 'get',
     url: `${base}${url}`
+   
   })
+   
 }

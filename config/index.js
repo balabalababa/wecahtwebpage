@@ -12,14 +12,14 @@ let serverObj = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/index': {
-        target: "https://api.weixin.qq.com",
-        changeOrigin: true,
-        secure: true,
-        pathRewrite: {
-          '^/index': ''
-        }
-      }
+      // '/index': {
+      //   target: "https://api.weixin.qq.com",
+      //   changeOrigin: true,
+      //   secure: true,
+      //   pathRewrite: {
+      //     '^/index': ''
+      //   }
+      // }
     },
 
     // Various Dev Server settings

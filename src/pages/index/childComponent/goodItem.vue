@@ -6,38 +6,38 @@
           <img src alt />
           <div class="goodcuntdown">
             <span class="cuntdownbefore">距结束</span>
-            <span class="cuntdownafter">00:00:00</span>
+            <span class="cuntdownafter">{{this.$store.state.home.time.D+'天'+this.$store.state.home.time.h+':'+this.$store.state.home.time.m+':'+this.$store.state.home.time.s}}</span>
           </div>
         </div>
         <div class="left_info">
           <div class="info_text">
             <div class="info_title">
-              <div class="info_brand">【回房间的卡萨】</div>
-              <div class="info_name">60系列平开窗，窗纱一体</div>
+              <div class="info_brand">【{{goodItem.brandName}}】</div>
+              <div class="info_name">{{goodItem.productName}}</div>
             </div>
             <div class="info_num">
               <mt-progress :value="20" :bar-height="5"></mt-progress>
               <div class="num_text">
                 <div class="num_before">
                   仅剩
-                  <span>10</span>件
+                  <span>{{goodItem.total-goodItem.sell}}</span>件
                 </div>
                 <div class="num_after">
                   已抢
-                  <span>10</span>件
+                  <span>{{goodItem.sell}}</span>件
                 </div>
               </div>
             </div>
             <div class="info_price">
               <div class="price_before">
-                <s>市场价：￥1800元/套</s>
+                <s>市场价：￥{{goodItem.priceBefore}}{{goodItem.danwei}}</s>
               </div>
               <div class="info_buy">
                 <div class="price_after">
                   ￥
-                  <span>7800</span>
+                  <span>{{goodItem.priceNow}}</span>
                 </div>
-                <mt-button type="default" @click="todetail" size="small">立即秒杀</mt-button>
+                <mt-button type="default" @click="todetail" size="small">查看详情</mt-button>
               </div>
             </div>
           </div>
@@ -45,20 +45,25 @@
       </div>
     </div>
     <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="right">
-      <ItemDetail/>
+      <ItemDetail :detail="goodItem" />
     </mt-popup>
   </div>
 </template>
 <script>
 import ItemDetail from './goodsDetail'
 export default {
+  props:["goodItem"],
   components:{
     ItemDetail
   },
   data() {
     return {
-      popupVisible: false
+      popupVisible: false,
+      time:""
     };
+  },
+  mounted(){
+   
   },
   methods: {
     todetail() {

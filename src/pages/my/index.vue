@@ -24,16 +24,36 @@
           </div>
           <div class="bar_item" @click="go">
             <div class="bar_title">我的奖励</div>
-            <div class="bar_num"><span>18元</span></div>
+            <div class="bar_num">
+              <span>18元</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <div class="my_app_list">
-      <mt-cell title="我的订单" icon="more" @click.prevent="handleLink('/my/order')" is-link  ></mt-cell>
-      <mt-cell title="优惠券" icon="more" is-link ></mt-cell>
-      <mt-cell title="申请合作" icon="more"  is-link ></mt-cell>
+      <router-link class="item" :to="{path: '/'}">
+        <div class="left">
+          <img src="../../assets/imgs/order.jpg" alt />
+          我的订单
+        </div>
+        <div class="right">></div>
+      </router-link>
+   <router-link class="item" :to="{path: '/'}">
+        <div class="left">
+          <img src="../../assets/imgs/coupon.jpg" alt />
+          优惠券
+        </div>
+        <div class="right">></div>
+      </router-link>
+         <router-link class="item" :to="{path: '/'}">
+        <div class="left">
+          <img src="../../assets/imgs/partener.jpg" alt />
+         申请合作
+        </div>
+        <div class="right">></div>
+      </router-link>
     </div>
 
     <div class="page-content">
@@ -98,9 +118,10 @@ export default {
         width: 100%;
         height: 100%;
       }
-    }.info_name{
+    }
+    .info_name {
       display: flex;
-      height:60px;
+      height: 60px;
       flex-direction: column;
       justify-content: space-around;
     }
@@ -114,8 +135,8 @@ export default {
       display: flex;
       .bar_item {
         flex: 1;
-        span{
-          color:red
+        span {
+          color: red;
         }
       }
     }
@@ -123,5 +144,23 @@ export default {
 }
 .my_app_list {
   text-align: left;
+  font-size:16px;
+  .item{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:10px 15px;
+    margin-bottom:10px;
+    border-bottom:1px solid #ccc;
+    .left{
+      display: flex;
+      align-items: center;
+      img{
+        width: 20px;
+        height: 20px;
+        margin-right:10px;
+      }
+    }
+  }
 }
 </style>

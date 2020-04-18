@@ -5,14 +5,18 @@
  * @Date: 2019-03-12 10:35:23
  * @LastEditTime: 2019-03-12 15:56:32
  */
+import Mock from 'mockjs'
 
-let userInfo = {
-  code: 200,
-  id: '123456',
-  msg: 'success',
-  name: 'gs',
-  tel: '12306'
-}
+let userInfo =Mock.mock({
+  success: true,
+  msg: '',
+  obj: {
+      "account_name": "@name",
+      "gender|1": ["male", "female"],
+      "birthday": Mock.Random.datetime('yyyy-MM-dd'),
+      "address": "a b c d"
+  }
+})
 
 let user = {
   userInfo
